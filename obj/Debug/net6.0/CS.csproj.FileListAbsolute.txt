@@ -1,0 +1,15 @@
+/Users/hoangthanh/Documents/CS/bin/Debug/net6.0/CS
+/Users/hoangthanh/Documents/CS/bin/Debug/net6.0/CS.deps.json
+/Users/hoangthanh/Documents/CS/bin/Debug/net6.0/CS.runtimeconfig.json
+/Users/hoangthanh/Documents/CS/bin/Debug/net6.0/CS.dll
+/Users/hoangthanh/Documents/CS/bin/Debug/net6.0/CS.pdb
+/Users/hoangthanh/Documents/CS/obj/Debug/net6.0/CS.csproj.AssemblyReference.cache
+/Users/hoangthanh/Documents/CS/obj/Debug/net6.0/CS.GeneratedMSBuildEditorConfig.editorconfig
+/Users/hoangthanh/Documents/CS/obj/Debug/net6.0/CS.AssemblyInfoInputs.cache
+/Users/hoangthanh/Documents/CS/obj/Debug/net6.0/CS.AssemblyInfo.cs
+/Users/hoangthanh/Documents/CS/obj/Debug/net6.0/CS.csproj.CoreCompileInputs.cache
+/Users/hoangthanh/Documents/CS/obj/Debug/net6.0/CS.dll
+/Users/hoangthanh/Documents/CS/obj/Debug/net6.0/ref/CS.dll
+/Users/hoangthanh/Documents/CS/obj/Debug/net6.0/CS.pdb
+/Users/hoangthanh/Documents/CS/obj/Debug/net6.0/CS.genruntimeconfig.cache
+/Users/hoangthanh/Documents/CS/obj/Debug/net6.0/refint/CS.dll
