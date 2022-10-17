@@ -22,12 +22,12 @@
     Random r = new Random();
     arr = Array.CreateInstance(typeof(int), length, lowerbound);
     for(int i=arr.GetLowerBound(0); i<=arr.GetUpperBound(0); i++)
-      for(int j=arr.GetLowerBound(1); i<=arr.GetUpperBound(1); i++)
-        arr.SetValue(r.NextSingle()*10, i, j);
+      for(int j=arr.GetLowerBound(1); j<=arr.GetUpperBound(1); j++)
+        arr.SetValue(r.Next(1, 99), i, j);
   }
   static void Print2DArray(Array arr){
     for(int i=arr.GetLowerBound(0); i<=arr.GetUpperBound(0); i++){
-      for(int j=arr.GetLowerBound(1); i<=arr.GetUpperBound(1); i++)
+      for(int j=arr.GetLowerBound(1); j<=arr.GetUpperBound(1); j++)
         System.Console.Write("{0, 5}", arr.GetValue(i, j));
       System.Console.WriteLine();
     }
