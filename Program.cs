@@ -1,4 +1,5 @@
-﻿public class Program
+﻿using System.Collections;
+public class Program
 {
   static void CreateArray(out Array arr, int length, int lowerbound){
     Random r = new Random();
@@ -43,8 +44,40 @@
       sum += (dynamic)list[i];
     return sum;
   }
+  static void GenerateArrayList(ArrayList arl){
+    Random r = new Random();
+    for(int i=0; i<5; i++)
+      arl.Add(r.Next(1, 99));
+  }
+  static int SumArrayList(ArrayList arl){
+    int sum = 0; //(int)arl[0]
+    foreach(int v in arl)
+      sum += v;
+    return sum;
+  }
+  class Student{
+    public string id;
+    public string hoten;
+    public float dtb;
+  }
   static void Main(){
     Console.Clear();
+
+    Student sv = new Student();
+    sv.id = "SV01"; sv.hoten = "Nguyen A"; sv.dtb = 6.5f;
+    List<Student> list = new List<Student>();
+    list.Add(sv);
+
+    Array arr = Array.CreateInstance(typeof(Student), 5);
+    arr.SetValue(sv, 0);
+
+    ArrayList arl = new ArrayList();
+    arl.Add(sv);
+
+    /*ArrayList arl = new ArrayList();
+    GenerateArrayList(arl);
+    System.Console.WriteLine("Tong ArrayList: " + SumArrayList(arl));*/
+
     /*List<int> intlist = new List<int>();
     intlist.Add(3); intlist.Add(5); intlist.Add(7);
     System.Console.WriteLine("Tong cua list: " + SumList<int>(intlist));
