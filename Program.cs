@@ -1,99 +1,111 @@
 ﻿using System.Collections;
 public class Program
 {
-  static void CreateArray(out Array arr, int length, int lowerbound){
-    Random r = new Random();
-    arr = Array.CreateInstance(typeof(float), new int[1]{length}, 
-      new int[1]{lowerbound});
-    for(int i=arr.GetLowerBound(0); i<=arr.GetUpperBound(0); i++)
-      arr.SetValue(r.NextSingle()*10, i);
+  public class Node
+  {
+    public Node next;
+    public object data;
   }
-  static void CreateArray2(Array arr){
-    Random r = new Random();
-    for(int i=arr.GetLowerBound(0); i<=arr.GetUpperBound(0); i++)
-      arr.SetValue(r.NextSingle()*10, i);
-  }
-  static float SumArray(Array arr){
-    float sum = 0;
-    foreach(float v in arr)
-      sum += v;
-    return sum;
-  }
-  static void Create2DArray(out Array arr, int[] length, int[] lowerbound){
-    Random r = new Random();
-    arr = Array.CreateInstance(typeof(int), length, lowerbound);
-    for(int i=arr.GetLowerBound(0); i<=arr.GetUpperBound(0); i++)
-      for(int j=arr.GetLowerBound(1); j<=arr.GetUpperBound(1); j++)
-        arr.SetValue(r.Next(1, 99), i, j);
-  }
-  static void Print2DArray(Array arr){
-    for(int i=arr.GetLowerBound(0); i<=arr.GetUpperBound(0); i++){
-      for(int j=arr.GetLowerBound(1); j<=arr.GetUpperBound(1); j++)
-        System.Console.Write("{0, 5}", arr.GetValue(i, j));
-      System.Console.WriteLine();
+  public class MyStack
+  {
+    Node top;
+    public bool IsEmpty()
+    {
+      return top == null;
+    }
+    public void Push(object ele)
+    {
+      Node n = new Node();
+      n.data = ele;
+      n.next = top;
+      top = n;
+    }
+    public Node Pop()
+    {
+      if (top == null)
+        return null;
+      Node d = top;
+      top = top.next;
+      return d;
     }
   }
-  static void GenerateList<T>(List<T> list){
-    Random r = new Random();
-    for(int i=0; i<list.Count; i++)
-      list.Add((dynamic)r.Next());
+
+  public class Node2
+  {
+    public Node2 prev, next;
+    public object data;
   }
-  static T SumList<T>(List<T> list){
-    T sum = list[0];
-    for(int i=1; i<list.Count; i++)
-      sum += (dynamic)list[i];
-    return sum;
+  public class MyQueue
+  {
+    Node2 rear, front; public bool IsEmpty()
+    {
+      return rear == null || front == null;
+    }
+    public void Enqueue(object ele)
+    {
+      Node2 n = new Node2();
+      n.data = ele;
+      if (rear == null)
+      {
+        rear = n; front = n;
+      }
+      else
+      {
+        rear.prev = n;
+        n.next = rear; rear = n;
+      }
+    }
+    public Node2 Dequeue()
+    {
+      if (front == null) return null;
+      Node2 d = front;
+      front = front.prev;
+      if (front == null)
+        rear = null;
+      else
+        front.next = null;
+      return d;
+    }
   }
-  static void GenerateArrayList(ArrayList arl){
-    Random r = new Random();
-    for(int i=0; i<5; i++)
-      arl.Add(r.Next(1, 99));
+
+
+  static object FindMaxOfStack(in MyStack ms)
+  {
+    //MyStack nms = new MyStack();
+    float max = (float)ms.Pop().data;
+    //nms.Push(max);
+    while (!ms.IsEmpty())
+    {
+      float t = (float)ms.Pop().data;
+      if (max < t)
+        max = t;
+      //nms.Push(t);
+    }
+    /*while(!nms.IsEmpty())
+      ms.Push(nms.Pop().data);*/
+    return max;
   }
-  static int SumArrayList(ArrayList arl){
-    int sum = 0; //(int)arl[0]
-    foreach(int v in arl)
-      sum += v;
-    return sum;
+  static object FindMaxOfQueue(in MyQueue mq){
+    float max = (float)mq.Dequeue().data;
+    while(!mq.IsEmpty()){
+      float t = (float)mq.Dequeue().data;
+      if(max < t)
+        max = t;
+    }
+    return max;
   }
-  class Student{
-    public string id;
-    public string hoten;
-    public float dtb;
-  }
-  static void Main(){
+
+  static void Main()
+  {
     Console.Clear();
 
-    Student sv = new Student();
-    sv.id = "SV01"; sv.hoten = "Nguyen A"; sv.dtb = 6.5f;
-    List<Student> list = new List<Student>();
-    list.Add(sv);
+    MyStack ms = new MyStack();
+    ms.Push(5f); ms.Push(7f); ms.Push(2.5f); ms.Push(8f); ms.Push(4f);
+    System.Console.WriteLine("Max of Stack: {0}", (float)FindMaxOfStack(ms));
 
-    Array arr = Array.CreateInstance(typeof(Student), 5);
-    arr.SetValue(sv, 0);
-
-    ArrayList arl = new ArrayList();
-    arl.Add(sv);
-
-    /*ArrayList arl = new ArrayList();
-    GenerateArrayList(arl);
-    System.Console.WriteLine("Tong ArrayList: " + SumArrayList(arl));*/
-
-    /*List<int> intlist = new List<int>();
-    intlist.Add(3); intlist.Add(5); intlist.Add(7);
-    System.Console.WriteLine("Tong cua list: " + SumList<int>(intlist));
-
-    List<List<int>> mylist = new List<List<int>>();
-    List<int> sub = new List<int>{1, 3, 5};
-    mylist.Add(sub);*/
-
-    /*Array arr2d;  int[] len = {2, 3}; int[] lb = {0, 0};
-    Create2DArray(out arr2d, len, lb);
-    Print2DArray(arr2d);*/
-
-    /*Array arr;
-    CreateArray(out arr, 5, 0);
-    System.Console.WriteLine("Tong: " + SumArray(arr));
-    */
+    MyQueue mq = new MyQueue();
+    mq.Enqueue(5f); mq.Enqueue(7f); mq.Enqueue(2.5f); mq.Enqueue(8f); mq.Enqueue(4f);
+    System.Console.WriteLine("Max of Queue: {0}", (float)FindMaxOfQueue(mq));
 
     Console.ReadLine();
   }
