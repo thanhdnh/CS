@@ -28,8 +28,21 @@ public class Program
       top = top.next;
       return d;
     }
+    public object Peek(int index){
+      MyStack temp = new MyStack();
+      int i = -1;
+      object data = 0;
+      while(i!=index){
+        Node t = Pop();
+        temp.Push(t.data);
+        data = t.data;
+        i++;
+      }
+      while(!temp.IsEmpty())
+        Push(temp.Pop().data);
+      return data;
+    }
   }
-
   public class Node2
   {
     public Node2 prev, next;
@@ -101,11 +114,13 @@ public class Program
 
     MyStack ms = new MyStack();
     ms.Push(5f); ms.Push(7f); ms.Push(2.5f); ms.Push(8f); ms.Push(4f);
-    System.Console.WriteLine("Max of Stack: {0}", (float)FindMaxOfStack(ms));
-
-    MyQueue mq = new MyQueue();
+    //System.Console.WriteLine("Max of Stack: {0}", (float)FindMaxOfStack(ms));
+    int index = 3;
+    System.Console.WriteLine("[{0}]=>{1}", index, ms.Peek(index));
+    
+    /*MyQueue mq = new MyQueue();
     mq.Enqueue(5f); mq.Enqueue(7f); mq.Enqueue(2.5f); mq.Enqueue(8f); mq.Enqueue(4f);
-    System.Console.WriteLine("Max of Queue: {0}", (float)FindMaxOfQueue(mq));
+    System.Console.WriteLine("Max of Queue: {0}", (float)FindMaxOfQueue(mq));*/
 
     Console.ReadLine();
   }
