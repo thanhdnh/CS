@@ -122,6 +122,11 @@ public class Program
     mq.Enqueue(5f); mq.Enqueue(7f); mq.Enqueue(2.5f); mq.Enqueue(8f); mq.Enqueue(4f);
     System.Console.WriteLine("Max of Queue: {0}", (float)FindMaxOfQueue(mq));*/
 
+    Stack st = new Stack();
+    Queue q = new Queue();
+    Stack<float> stf = new Stack<float>();
+    Queue<float> qf = new Queue<float>();
+
     Console.ReadLine();
   }
 }
