@@ -48,12 +48,35 @@ public class Program
       return i;
     return -1;
   }
+  public static int BinSearch(int[] arr, int T)
+  {
+    int L = 0;
+    int R = arr.Length - 1;
+    while (L <= R)
+    {
+      int m = (L + R) / 2;
+      if (arr[m] == T)
+        return m;
+      else if (arr[m] < T)
+        L = m + 1;
+      else
+        R = m - 1;
+    }
+    return -1;
+  }
   static void Main()
   {
     Console.Clear();
 
     int[] arr = new int[6] { 3, 6, 1, 9, 4, 6 };
-    System.Console.WriteLine("Vi tri PT {0} la {1}", 9, SenSearch(arr, 9));
+    int[] sarr = new int[6];
+    Array.Copy(arr, sarr, arr.Length);
+    Array.Sort(sarr);
+    foreach(int v in sarr)
+      System.Console.Write(v + " ");
+    System.Console.WriteLine();
+    System.Console.WriteLine("Vi tri PT {0} la {1}", 9, BinSearch(sarr, 9));
+    //System.Console.WriteLine("Vi tri PT {0} la {1}", 9, SenSearch(arr, 9));
     //System.Console.WriteLine("Vi tri PT {0} la {1}", 6, RecuSearch(arr, 0, 6));
     /*List<int> result = SeqMultiSearch(arr, 6);
     if (result.Count > 0)
