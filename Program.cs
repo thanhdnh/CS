@@ -62,6 +62,35 @@ public class Program
         current = current.link;
       }
     }
+    public Node FindMax(){
+      Node current = header;
+      Node max = new Node();
+      max.element = int.MinValue.ToString();
+      while(current.link!=null){
+        if(current!=header)
+          if(int.Parse(current.element.ToString())>int.Parse(max.element.ToString())){
+            max.element = current.element;
+            max.link = null;
+          }
+        current = current.link;
+      }
+      return max;
+    }
+    public Node FindMax2(){
+      Node current = header;
+      current = current.link;
+      Node max = new Node();
+      max.element = current.element;
+      max.link = null;
+      while(current.link!=null){
+        if(int.Parse(current.element.ToString())>int.Parse(max.element.ToString())){
+          max.element = current.element;
+          max.link = null;
+        }
+        current = current.link;
+      }
+      return max;
+    }
   }
 
   static void Main()
@@ -69,13 +98,13 @@ public class Program
     Console.Clear();
 
     LinkedList list = new LinkedList();
-    list.Insert("First", "Header");
-    list.Insert("Second", "First");
-    list.Insert("Third", "Second");
+    list.Insert("1", "Header");
+    list.Insert("15", "1");
+    list.Insert("12", "15");
+    list.Insert("19", "12");
+    list.Insert("11", "19");
     list.Print();
-    Console.WriteLine("===");
-    list.Remove("Second");
-    list.Print();
+    System.Console.WriteLine("Max node: " + list.FindMax2().element.ToString());
 
     Console.ReadLine();
   }
