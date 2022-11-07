@@ -70,13 +70,13 @@ public class Program
       max.element = int.MinValue.ToString();
       while (current.link != null)
       {
-        if (current != header)
+        current = current.link;
+        //if (current != header)
           if (int.Parse(current.element.ToString()) > int.Parse(max.element.ToString()))
           {
             max.element = current.element;
             max.link = null;
           }
-        current = current.link;
       }
       return max;
     }
@@ -89,12 +89,12 @@ public class Program
       max.link = null;
       while (current.link != null)
       {
+        current = current.link;
         if (int.Parse(current.element.ToString()) > int.Parse(max.element.ToString()))
         {
           max.element = current.element;
           max.link = null;
         }
-        current = current.link;
       }
       return max;
     }
@@ -176,7 +176,7 @@ public class Program
       Node2 current = FindLast();
       Node2 max = new Node2();
       max.element = current.element;
-      while (!(current.blink.blink == null))
+      while (!(current.blink == null))
       {
         if(int.Parse(max.element.ToString())<int.Parse(current.element.ToString())){
           max.element = current.element;
@@ -200,20 +200,20 @@ public class Program
     Console.Clear();
 
     /*LinkedList list = new LinkedList();
-    list.Insert("1", "Header");
-    list.Insert("15", "1");
+    list.Insert("41", "Header");
+    list.Insert("15", "41");
     list.Insert("12", "15");
     list.Insert("19", "12");
-    list.Insert("11", "19");
+    list.Insert("21", "19");
     list.Print();
     System.Console.WriteLine("Max node: " + list.FindMax2().element.ToString());
     */
     /*DoubleLinkedList dlist = new DoubleLinkedList();
-    dlist.Insert("22", "Header");
-    dlist.Insert("45", "22");
+    dlist.Insert("62", "Header");
+    dlist.Insert("45", "62");
     dlist.Insert("11", "45");
     dlist.Insert("40", "11");
-    dlist.Insert("9", "40");
+    dlist.Insert("69", "40");
     Console.WriteLine("Max of DoubleLinkedList: "+dlist.FindMax().element.ToString());
     */
     LinkedList<int> llnet = new LinkedList<int>();
@@ -226,6 +226,7 @@ public class Program
       System.Console.Write(v + " ");
     System.Console.WriteLine();
     System.Console.WriteLine("Max LLNet: "+FindMaxLLNet(llnet));
+
     Console.ReadLine();
   }
 }
