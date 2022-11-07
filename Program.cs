@@ -62,13 +62,16 @@ public class Program
         current = current.link;
       }
     }
-    public Node FindMax(){
+    public Node FindMax()
+    {
       Node current = header;
       Node max = new Node();
       max.element = int.MinValue.ToString();
-      while(current.link!=null){
-        if(current!=header)
-          if(int.Parse(current.element.ToString())>int.Parse(max.element.ToString())){
+      while (current.link != null)
+      {
+        if (current != header)
+          if (int.Parse(current.element.ToString()) > int.Parse(max.element.ToString()))
+          {
             max.element = current.element;
             max.link = null;
           }
@@ -76,14 +79,17 @@ public class Program
       }
       return max;
     }
-    public Node FindMax2(){
+    public Node FindMax2()
+    {
       Node current = header;
       current = current.link;
       Node max = new Node();
       max.element = current.element;
       max.link = null;
-      while(current.link!=null){
-        if(int.Parse(current.element.ToString())>int.Parse(max.element.ToString())){
+      while (current.link != null)
+      {
+        if (int.Parse(current.element.ToString()) > int.Parse(max.element.ToString()))
+        {
           max.element = current.element;
           max.link = null;
         }
@@ -93,11 +99,86 @@ public class Program
     }
   }
 
+  public class Node2
+  {
+    public object element;
+    public Node2 flink, blink;
+    public Node2()
+    {
+      element = null;
+      flink = blink = null;
+    }
+    public Node2(object element)
+    {
+      this.element = element;
+      flink = blink = null;
+    }
+  }
+
+  public class DoubleLinkedList
+  {
+    public Node2 header;
+    public DoubleLinkedList()
+    {
+      header = new Node2("Header");
+    }
+    private Node2 Find(object element)
+    {
+      Node2 current = new Node2();
+      current = header;
+      while (current.element != element)
+      {
+        current = current.flink;
+      }
+      return current;
+    }
+    public void Insert(object newelement, object afterelement)
+    {
+      Node2 current = new Node2();
+      Node2 newnode = new Node2(newelement);
+      current = Find(afterelement);
+      newnode.flink = current.flink;
+      newnode.blink = current;
+      current.flink = newnode;
+    }
+    public void Remove(object element)
+    {
+      Node2 current = Find(element);
+      if (current.flink != null)
+      {
+        current.blink.flink = current.flink;
+        current.flink.blink = current.blink;
+        current.flink = null;
+        current.blink = null;
+      }
+    }
+    private Node2 FindLast()
+    {
+      Node2 current = new Node2();
+      current = header;
+      while (!(current.flink == null))
+        current = current.flink;
+      return current;
+    }
+    public void Print()
+    {
+      Node2 current = new Node2();
+      current = FindLast();
+      while (!(current.blink == null))
+      {
+        Console.WriteLine(current.element);
+        current = current.blink;
+      }
+    }
+
+  }
+
+
   static void Main()
   {
     Console.Clear();
 
-    LinkedList list = new LinkedList();
+    /*LinkedList list = new LinkedList();
     list.Insert("1", "Header");
     list.Insert("15", "1");
     list.Insert("12", "15");
@@ -105,6 +186,15 @@ public class Program
     list.Insert("11", "19");
     list.Print();
     System.Console.WriteLine("Max node: " + list.FindMax2().element.ToString());
+    */
+    DoubleLinkedList dlist = new DoubleLinkedList();
+    dlist.Insert("First", "Header");
+    dlist.Insert("Second", "First");
+    dlist.Insert("Third", "Second");
+    dlist.Print();
+    Console.WriteLine("---");
+    dlist.Remove("Second");
+    dlist.Print();
 
     Console.ReadLine();
   }
