@@ -1,101 +1,81 @@
 ﻿using System;
 public class Program
 {
-  static int SeqSearch(int[] arr, int value)
+  public class Node
   {
-    for (int i = 0; i < arr.Length; i++)
-      if (arr[i] == value)
-        return i;
-    return -1;
-  }
-  static int SeqLastSearch(int[] arr, int value)
-  {
-    int t = -1;
-    for (int i = 0; i < arr.Length; i++)
-      if (arr[i] == value)
-        t = i;
-    return t;
-  }
-  static List<int> SeqMultiSearch(int[] arr, int value)
-  {
-    List<int> result = new List<int>();
-    for (int i = 0; i < arr.Length; i++)
-      if (arr[i] == value)
-        result.Add(i);
-    return result;
-  }
-  static int RecuSearch(int[] arr, int from, int value)
-  {
-    if (arr.Length == 0 || from >= arr.Length)
-      return -1;
-    else
+    public object element;
+    public Node link;
+    public Node()
     {
-      if (arr[from] == value)
-        return from;
-      else
-        return RecuSearch(arr, from + 1, value);
+      element = null;
+      link = null;
+    }
+    public Node(object element)
+    {
+      this.element = element;
+      link = null;
     }
   }
-  static int SenSearch(int[] A, int value)
+  public class LinkedList
   {
-    int x = A[A.Length - 1];
-    A[A.Length - 1] = value;
-    int i = 0;
-    while (A[i] != value)
-      i++;
-    A[A.Length - 1] = x;
-    if (A[A.Length - 1] == value || i < A.Length - 1)
-      return i;
-    return -1;
-  }
-  public static int BinSearch(int[] arr, int T)
-  {
-    int L = 0;
-    int R = arr.Length - 1;
-    while (L <= R)
+    public Node header;
+    public LinkedList()
     {
-      int m = (L + R) / 2;
-      if (arr[m] == T)
-        return m;
-      else if (arr[m] < T)
-        L = m + 1;
-      else
-        R = m - 1;
+      header = new Node("Header");
     }
-    return -1;
+    private Node Find(object element)
+    {
+      Node current = new Node();
+      current = header;
+      while (current.element != element)
+        current = current.link;
+      return current;
+    }
+    public void Insert(object newelement, object afterelement)
+    {
+      Node current = new Node();
+      Node newnode = new Node(newelement);
+      current = Find(afterelement);
+      newnode.link = current.link;
+      current.link = newnode;
+    }
+    public Node FindPrev(object element)
+    {
+      Node current = header;
+      while (current.link != null && current.link.element != element)
+        current = current.link;
+      return current;
+    }
+    public void Remove(object element)
+    {
+      Node current = FindPrev(element);
+      if (current.link != null)
+        current.link = current.link.link;
+    }
+    public void Print()
+    {
+      Node current = new Node();
+      current = header;
+      while (current.link != null)
+      {
+        Console.WriteLine(current.link.element);
+        current = current.link;
+      }
+    }
   }
+
   static void Main()
   {
     Console.Clear();
 
-    int[] arr = new int[6] { 3, 6, 1, 9, 4, 6 };
-    int[] sarr = new int[6];
-    Array.Copy(arr, sarr, arr.Length);
-    Array.Sort(sarr);
-    foreach(int v in sarr)
-      System.Console.Write(v + " ");
-    System.Console.WriteLine();
-    System.Console.WriteLine("Vi tri PT {0} la {1}", 9, BinSearch(sarr, 9));
-    //System.Console.WriteLine("Vi tri PT {0} la {1}", 9, SenSearch(arr, 9));
-    //System.Console.WriteLine("Vi tri PT {0} la {1}", 6, RecuSearch(arr, 0, 6));
-    /*List<int> result = SeqMultiSearch(arr, 6);
-    if (result.Count > 0)
-    {
-      Console.Write("Vi tri cua {0} la: ", 6);
-      foreach (int v in result)
-        Console.Write(v + " ");
-      Console.WriteLine();
-    }
-    else
-      System.Console.WriteLine("Không tồn tại phần tử {0}", 6);
-    */
-    /*Console.WriteLine("Vi tri cua {0} la: {1}", 1, SeqSearch(arr, 1));
-    Console.WriteLine("Vi tri cua {0} la: {1}", 6, SeqSearch(arr, 6));
-    Console.WriteLine("Vi tri cua {0} la: {1}", 11, SeqSearch(arr, 11));*/
-    /*Console.WriteLine("Vi tri cua {0} la: {1}", 1, SeqLastSearch(arr, 1));
-    Console.WriteLine("Vi tri cua {0} la: {1}", 6, SeqLastSearch(arr, 6));
-    Console.WriteLine("Vi tri cua {0} la: {1}", 11, SeqLastSearch(arr, 11));*/
-
+    LinkedList list = new LinkedList();
+    list.Insert("First", "Header");
+    list.Insert("Second", "First");
+    list.Insert("Third", "Second");
+    list.Print();
+    Console.WriteLine("===");
+    list.Remove("Second");
+    list.Print();
 
     Console.ReadLine();
   }
