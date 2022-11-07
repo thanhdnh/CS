@@ -170,10 +170,22 @@ public class Program
         current = current.blink;
       }
     }
-
+    public Node2 FindMax()
+    {
+      Node2 current = FindLast();
+      Node2 max = new Node2();
+      max.element = current.element;
+      while (!(current.blink.blink == null))
+      {
+        if(int.Parse(max.element.ToString())<int.Parse(current.element.ToString())){
+          max.element = current.element;
+          max.blink = max.flink = null;
+        }
+        current = current.blink;
+      }
+      return max;
+    }
   }
-
-
   static void Main()
   {
     Console.Clear();
@@ -188,13 +200,12 @@ public class Program
     System.Console.WriteLine("Max node: " + list.FindMax2().element.ToString());
     */
     DoubleLinkedList dlist = new DoubleLinkedList();
-    dlist.Insert("First", "Header");
-    dlist.Insert("Second", "First");
-    dlist.Insert("Third", "Second");
-    dlist.Print();
-    Console.WriteLine("---");
-    dlist.Remove("Second");
-    dlist.Print();
+    dlist.Insert("22", "Header");
+    dlist.Insert("45", "22");
+    dlist.Insert("11", "45");
+    dlist.Insert("40", "11");
+    dlist.Insert("9", "40");
+    Console.WriteLine("Max of DoubleLinkedList: "+dlist.FindMax().element.ToString());
 
     Console.ReadLine();
   }
