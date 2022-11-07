@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 public class Program
 {
   public class Node
@@ -186,6 +187,14 @@ public class Program
       return max;
     }
   }
+
+  static int FindMaxLLNet(LinkedList<int> lnet){
+    int max = int.MinValue;
+    foreach(int v in lnet)
+      if(max<v)
+        max = v;
+    return max;
+  }
   static void Main()
   {
     Console.Clear();
@@ -199,14 +208,24 @@ public class Program
     list.Print();
     System.Console.WriteLine("Max node: " + list.FindMax2().element.ToString());
     */
-    DoubleLinkedList dlist = new DoubleLinkedList();
+    /*DoubleLinkedList dlist = new DoubleLinkedList();
     dlist.Insert("22", "Header");
     dlist.Insert("45", "22");
     dlist.Insert("11", "45");
     dlist.Insert("40", "11");
     dlist.Insert("9", "40");
     Console.WriteLine("Max of DoubleLinkedList: "+dlist.FindMax().element.ToString());
-
+    */
+    LinkedList<int> llnet = new LinkedList<int>();
+    llnet.AddFirst(new LinkedListNode<int>(10));
+    LinkedListNode<int> temp = new LinkedListNode<int>(11);
+    llnet.AddLast(temp);
+    llnet.AddAfter(temp, new LinkedListNode<int>(99));
+    llnet.AddBefore(temp, new LinkedListNode<int>(999));
+    foreach(int v in llnet)
+      System.Console.Write(v + " ");
+    System.Console.WriteLine();
+    System.Console.WriteLine("Max LLNet: "+FindMaxLLNet(llnet));
     Console.ReadLine();
   }
 }
