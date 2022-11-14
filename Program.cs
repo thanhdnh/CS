@@ -31,12 +31,20 @@ public class Program
     foreach(KeyValuePair<string, Account> p in dictnet)
       System.Console.WriteLine("{0}=>{1}", p.Key, p.Value);*/
 
-    SortedDictionary<string, Account> sdict = new SortedDictionary<string, Account>();
+    /*SortedDictionary<string, Account> sdict = new SortedDictionary<string, Account>();
     sdict.Add(email1, acc1);
     sdict.Add(email2, acc2);
     sdict.Add(email3, acc3);
     foreach(KeyValuePair<string, Account> p in sdict)
-      System.Console.WriteLine("{0}=>{1}", p.Key, p.Value);
+      System.Console.WriteLine("{0}=>{1}", p.Key, p.Value);*/
+
+    Hashtable hashtbl = new Hashtable(3);
+    hashtbl.Add(email1, acc1);
+    hashtbl.Add(email2, acc2);
+    hashtbl.Add(email3, acc3);
+    IDictionaryEnumerator enumerate = hashtbl.GetEnumerator();
+    while(enumerate.MoveNext())
+      System.Console.WriteLine("{0}=>{1}", enumerate.Key, enumerate.Value);
 
     Console.ReadLine();
   }
