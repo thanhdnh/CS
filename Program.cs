@@ -38,13 +38,20 @@ public class Program
     foreach(KeyValuePair<string, Account> p in sdict)
       System.Console.WriteLine("{0}=>{1}", p.Key, p.Value);*/
 
-    Hashtable hashtbl = new Hashtable(3);
+    /*Hashtable hashtbl = new Hashtable(3);
     hashtbl.Add(email1, acc1);
     hashtbl.Add(email2, acc2);
     hashtbl.Add(email3, acc3);
     IDictionaryEnumerator enumerate = hashtbl.GetEnumerator();
     while(enumerate.MoveNext())
-      System.Console.WriteLine("{0}=>{1}", enumerate.Key, enumerate.Value);
+      System.Console.WriteLine("{0}=>{1}", enumerate.Key, enumerate.Value);*/
+
+    List<HTAccount> list = new List<HTAccount>();
+    list.Add(new HTAccount("abc", "123456789", "Hello!"));
+    list.Add(new HTAccount("def", "234567891", "Hi!"));
+    list.Add(new HTAccount("ghi", "345678912", "Hey!"));
+    foreach(HTAccount acc in list)
+      System.Console.WriteLine(acc);
 
     Console.ReadLine();
   }
