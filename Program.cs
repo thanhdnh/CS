@@ -162,8 +162,8 @@
     binaryTree.TraversePreOrder(binaryTree.Root);
     Console.WriteLine("\n>> PostOrder Traversal:"); 
     binaryTree.TraversePostOrder(binaryTree.Root);
-    System.Console.WriteLine("\n\nAfter removing Nodes 7 and 8:");
-    binaryTree.Remove(7); binaryTree.Remove(8);
+    System.Console.WriteLine("\n\nAfter removing Nodes 37 and 22:");
+    binaryTree.Remove(37); binaryTree.Remove(22);
     Console.WriteLine("\n>> PreOrder After Removing Operation:");
     binaryTree.TraversePreOrder(binaryTree.Root);
 
