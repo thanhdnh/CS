@@ -15,11 +15,11 @@
       while (after != null)
       {
         before = after;
-        if (value < after.Data)
+        if (value < after.Data)//<=
           after = after.LeftNode;
-        else if (value > after.Data)
+        else if (value > after.Data)//not if
           after = after.RightNode;
-        else
+        else//remove
           return false;
       }
       Node newNode = new Node();
@@ -28,7 +28,7 @@
         this.Root = newNode;
       else
       {
-        if (value < before.Data)
+        if (value < before.Data)//<=
           before.LeftNode = newNode;
         else
           before.RightNode = newNode;
