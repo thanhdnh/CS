@@ -142,7 +142,25 @@
       }
       return parent;
     }
-
+    public int Count(Node parent){
+      if (parent == null)
+        return 0;
+      else
+        return 1+Count(parent.LeftNode)+Count(parent.RightNode);
+    }
+    public int Count(){
+      return Count(Root);
+    }
+    public int Sum(Node parent){
+      if (parent == null)
+        return 0;
+      else 
+        return parent.Data+ Sum(parent.LeftNode)+ Sum(parent.RightNode);
+    }
+    public int Sum()
+    {
+      return Sum(Root);
+    }
   }
   static void Main()
   {
@@ -162,11 +180,14 @@
     binaryTree.TraversePreOrder(binaryTree.Root);
     Console.WriteLine("\n>> PostOrder Traversal:"); 
     binaryTree.TraversePostOrder(binaryTree.Root);
-    System.Console.WriteLine("\n\nAfter removing Nodes 37 and 22:");
-    binaryTree.Remove(37); binaryTree.Remove(22);
-    Console.WriteLine("\n>> PreOrder After Removing Operation:");
-    binaryTree.TraversePreOrder(binaryTree.Root);
-
+    //System.Console.WriteLine("\n\nAfter removing Nodes 37 and 22:");
+    //binaryTree.Remove(37); binaryTree.Remove(22);
+    //Console.WriteLine("\n>> PreOrder After Removing Operation:");
+    //binaryTree.TraversePreOrder(binaryTree.Root);
+    System.Console.WriteLine("\nSo Node la");
+    System.Console.WriteLine(binaryTree.Count());
+    System.Console.WriteLine("\nTong:");
+    System.Console.WriteLine(binaryTree.Sum());
     Console.ReadLine();
   }
 }
